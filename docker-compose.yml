@@ -1,3 +1,4 @@
+# docker-compose.yml
 services:
   jupyterhub:
     build:
@@ -6,11 +7,25 @@ services:
     container_name: jupyterhub
     volumes:
       - ./data:/srv/jupyterhub/data
-      - ./notebooks:/home/ds
       - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     environment:
       JUPYTERHUB_CONFIG: /srv/jupyterhub/jupyterhub_config.py
+      NOTEBOOK_DIR_PATH: ${NOTEBOOK_DIR_PATH}
+      COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
     command: jupyterhub --config /srv/jupyterhub/jupyterhub_config.py
     ports:
       - "8000:80"
+    networks:
+      - jupyterhub_network
+
+  notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile.singleuser
+    image: jupyter-notebook-instance:latest
+
+networks:
+  jupyterhub_network:
+    driver: bridge

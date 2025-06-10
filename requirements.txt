@@ -1,0 +1,19 @@
+# Formatter Packages
+black
+isort
+
+# DataScience Libraries
+scipy
+numpy
+pandas
+matplotlib
+scikit-learn
+
+# JupyterLab Extensions
+jupyter-collaboration
+catppuccin-jupyterlab
+jupyterlab-code-formatter
+
+# Important for user authentication
+# dockerspawner
+# jupyterhub-nativeauthenticator

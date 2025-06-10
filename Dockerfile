@@ -1,17 +1,9 @@
 FROM jupyterhub/jupyterhub:latest
 
-RUN useradd -m -s /bin/bash admin && echo "admin:adminpass" | chpasswd
+WORKDIR /srv/jupyterhub
 
-RUN pip install \
-    numpy \
-    pandas \
-    matplotlib \
-    scikit-learn \
-    scipy \
-    black \
-    isort \
-    jupyter-collaboration \
-    jupyterlab_darkside_theme \
-    jupyterlab-code-formatter
+COPY requirements.txt .
+
+RUN pip install jupyterhub-nativeauthenticator dockerspawner
 
 RUN pip cache purge
