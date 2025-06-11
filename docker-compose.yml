@@ -14,6 +14,7 @@ services:
       JUPYTERHUB_CONFIG: /srv/jupyterhub/jupyterhub_config.py
       NOTEBOOK_DIR_PATH: ${NOTEBOOK_DIR_PATH}
       COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+      ADMIN_NAME: ${ADMIN_NAME}
     command: jupyterhub --config /srv/jupyterhub/jupyterhub_config.py
     ports:
       - "8000:80"

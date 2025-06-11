@@ -4,6 +4,6 @@ WORKDIR /srv/jupyterhub
 
 COPY requirements.txt .
 
-RUN pip install jupyterhub-nativeauthenticator dockerspawner
+RUN pip install jupyterhub-firstuseauthenticator dockerspawner
 
 RUN pip cache purge

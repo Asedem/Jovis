@@ -9,13 +9,12 @@ c.JupyterHub.port = 80
 
 c.JupyterHub.hub_port = 8080
 
-c.JupyterHub.authenticator_class = 'native'
-
-import nativeauthenticator
-c.JupyterHub.template_paths = [f"{os.path.dirname(nativeauthenticator.__file__)}/templates/"]
+c.JupyterHub.authenticator_class = 'firstuseauthenticator.FirstUseAuthenticator'
+c.FirstUseAuthenticator.dbm_path = '/srv/jupyterhub/data/passwords.dbm'
+c.FirstUseAuthenticator.create_users = False
 
 c.Authenticator.allow_all = True
-c.Authenticator.admin_users = {'admin'}
+c.Authenticator.admin_users = { os.environ.get('ADMIN_NAME', 'admin') }
 
 c.JupyterHub.db_url = 'sqlite:////srv/jupyterhub/data/jupyterhub.sqlite'
 
