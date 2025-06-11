@@ -13,7 +13,3 @@ scikit-learn
 jupyter-collaboration
 catppuccin-jupyterlab
 jupyterlab-code-formatter
-
-# Important for user authentication
-# dockerspawner
-# jupyterhub-nativeauthenticator
